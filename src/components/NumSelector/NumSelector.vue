@@ -1,13 +1,13 @@
 <template>
   <section class='picker-outer-container'>
-    <p>{{ label }}</p>
+    <p>number of {{ label }}:</p>
     <div class='picker-num-btn-container'>
       <div class='number-display-container'>
         <p class='number-display'>{{ number }}</p>
       </div>
       <div class='plus-minus-button-container'>
-        <button class='increment-button' @click="updateNumber('+')">+</button>
-        <button class='increment-button' @click="updateNumber('-')">-</button>
+        <button class='increment-button' @click="updateNumber('+')">⬆</button>
+        <button class='increment-button' @click="updateNumber('-')">⬇</button>
       </div>
     </div>
   </section>
@@ -21,7 +21,8 @@
     },
     data() {
       return {
-        number: 2
+        number: 2,
+        pickerType: this.label
       }
     },
     methods: {
@@ -35,7 +36,13 @@
             this.number--
           }
         }
+      },
+      assignPickerType() {
+        if (this.pickerType === )
       }
+    },
+    mounted() {
+      this.assignPickerType()
     }
   }
 </script>

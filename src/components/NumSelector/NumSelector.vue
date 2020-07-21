@@ -1,41 +1,43 @@
 <template>
-  <section>
-    <p>pick a number of teams:</p>
+  <section class='picker-outer-container'>
+    <p>{{ label }}</p>
     <div class='picker-num-btn-container'>
-      <div class='team-number-display-container'>
-        <p class='team-number-display'>{{ numberOfTeams }}</p>
+      <div class='number-display-container'>
+        <p class='number-display'>{{ number }}</p>
       </div>
       <div class='plus-minus-button-container'>
-        <button class='increment-button' @click="updateNumberOfTeams('+')">+</button>
-        <button class='increment-button' @click="updateNumberOfTeams('-')">-</button>
+        <button class='increment-button' @click="updateNumber('+')">+</button>
+        <button class='increment-button' @click="updateNumber('-')">-</button>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-export default {
-  name: 'NumSelector',
-  props: {},
-  data() {
-    return {
-      numberOfTeams: 2
-    }
-  },
-  methods: {
-    updateNumberOfTeams(plusOrMinus) {
-      if (plusOrMinus === '+') {
-        this.numberOfTeams++
-      } else {
-        if (this.numberOfTeams === 2) {
-          return;
+  export default {
+    name: 'NumSelector',
+    props: {
+      label: String
+    },
+    data() {
+      return {
+        number: 2
+      }
+    },
+    methods: {
+      updateNumber(plusOrMinus) {
+        if (plusOrMinus === '+') {
+          this.number++
         } else {
-          this.numberOfTeams--
+          if (this.number === 2) {
+            return;
+          } else {
+            this.number--
+          }
         }
       }
     }
   }
-}
 </script>
 
 <style>

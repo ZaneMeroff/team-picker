@@ -3,8 +3,8 @@
     <div class='main-container'>
       <h1>Random Team Generator</h1>
       <div v-if='displayNumPickers'>
-        <NumSelector label='number of teams:'/>
-        <NumSelector label='number of players:'/>
+        <NumSelector label='teams' />
+        <NumSelector label='players' />
         <button class='next-button' @click='updateDisplayNumPickers'>next</button>
       </div>
     </div>
@@ -12,7 +12,6 @@
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
 import NumSelector from './components/NumSelector/NumSelector.vue';
 
 export default {
@@ -22,14 +21,17 @@ export default {
   },
   data() {
     return {
+      numberOfTeams: 2,
+      numberOfPlayers: 2,
       displayNumPickers: true
     }
   },
   methods: {
     updateDisplayNumPickers() {
-      if (this.displayNumPickers) {
-        this.displayNumPickers = false;
-      }
+      this.displayNumPickers = !this.displayNumPickers;
+    },
+    updateNumber() {
+      console.log('it works!');
     }
   }
 }
@@ -54,7 +56,6 @@ export default {
     flex-direction: column;
     align-items: center;
     border: 2px solid #000;
-
   }
   .next-button {
     height: 50px;

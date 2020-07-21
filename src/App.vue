@@ -1,8 +1,12 @@
 <template>
   <div id='main-outer-container'>
     <div class='main-container'>
-      <h1>Random Team Generator App</h1>
-      <NumSelector />
+      <h1>Random Team Generator</h1>
+      <div v-if='displayNumPickers'>
+        <NumSelector label='number of teams:'/>
+        <NumSelector label='number of players:'/>
+        <button class='next-button' @click='updateDisplayNumPickers'>next</button>
+      </div>
     </div>
   </div>
 </template>
@@ -15,6 +19,18 @@ export default {
   name: 'App',
   components: {
     NumSelector
+  },
+  data() {
+    return {
+      displayNumPickers: true
+    }
+  },
+  methods: {
+    updateDisplayNumPickers() {
+      if (this.displayNumPickers) {
+        this.displayNumPickers = false;
+      }
+    }
   }
 }
 </script>
@@ -39,5 +55,13 @@ export default {
     align-items: center;
     border: 2px solid #000;
 
+  }
+  .next-button {
+    height: 50px;
+    width: 80px;
+    margin: 20px;
+  }
+  .next-button:hover {
+    cursor: pointer;
   }
 </style>

@@ -6,8 +6,8 @@
         <p class='number-display'>{{ number }}</p>
       </div>
       <div class='plus-minus-button-container'>
-        <button class='increment-button' @click="updateNumber('+')">⬆</button>
-        <button class='increment-button' @click="updateNumber('-')">⬇</button>
+        <button class='increment-button' @click="updateNumber(label, '+')">⬆</button>
+        <button class='increment-button' @click="updateNumber(label, '-')">⬇</button>
       </div>
     </div>
   </section>
@@ -17,33 +17,16 @@
   export default {
     name: 'NumSelector',
     props: {
-      label: String
+      label: String,
+      number: Number,
+      updateNumber: Function
     },
     data() {
       return {
-        number: 2,
-        pickerType: this.label
+        // pickerType: this.label
       }
     },
-    methods: {
-      updateNumber(plusOrMinus) {
-        if (plusOrMinus === '+') {
-          this.number++
-        } else {
-          if (this.number === 2) {
-            return;
-          } else {
-            this.number--
-          }
-        }
-      },
-      assignPickerType() {
-        if (this.pickerType === )
-      }
-    },
-    mounted() {
-      this.assignPickerType()
-    }
+    methods: {}
   }
 </script>
 

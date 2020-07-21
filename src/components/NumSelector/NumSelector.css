@@ -1,0 +1,39 @@
+.picker-outer-container {
+  margin: 10px;
+}
+
+.picker-num-btn-container {
+  border: 2px solid red;
+  height: 100px;
+  width: 150px;
+  display: flex;
+}
+
+.plus-minus-button-container {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.number-display-container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number-display {
+  font-size: 300%;
+}
+
+.increment-button {
+  height: 50%;
+  border-radius: 0px;
+  border: 1px solid #000;
+}
+
+.increment-button:hover {
+  cursor: pointer;
+  background-color: yellow;
+}

@@ -7,8 +7,11 @@
         <NumSelector label='players' :number='playerNames.length' :updateNumber='updateNumber'/>
         <button class='next-button' @click='nextScreen'>next</button>
       </div>
-      <div>
-        <PlayerNameInputScreen />
+      <div v-if='currentStep === 2'>
+        <button>back</button>
+        <div v-for='(player, index) in playerNames' :key='index' >
+          <PlayerNameInputScreen />
+        </div>
       </div>
     </div>
   </div>

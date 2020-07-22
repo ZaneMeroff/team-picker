@@ -9,7 +9,7 @@
       <div v-if='currentStep === 2'>
         <button class='back-button' @click="nextScreen('back')">back</button>
         <div v-for='(player, index) in playerNames' :key='index' >
-          <PlayerNameInputScreen />
+          <PlayerNameInput />
         </div>
       </div>
       <button class='next-button' @click="nextScreen('next')">next</button>
@@ -19,12 +19,12 @@
 
 <script>
   import NumSelector from './components/NumSelector/NumSelector.vue';
-  import PlayerNameInputScreen from './components/PlayerNameInputScreen/PlayerNameInputScreen.vue';
+  import PlayerNameInput from './components/PlayerNameInput/PlayerNameInput.vue';
   export default {
     name: 'App',
     components: {
       NumSelector,
-      PlayerNameInputScreen
+      PlayerNameInput
     },
     data() {
       return {

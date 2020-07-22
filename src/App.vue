@@ -2,7 +2,7 @@
   <div id='main-outer-container'>
     <div class='main-container'>
       <h1>Random Team Generator</h1>
-      <div v-if='currentStep === 2'>
+      <div v-if='currentStep === 1'>
         <NumSelector label='teams' :number='numberOfTeams' :updateNumber='updateNumber'/>
         <NumSelector label='players' :number='numberOfPlayers' :updateNumber='updateNumber'/>
         <button class='next-button' @click='nextScreen'>next</button>
@@ -27,33 +27,35 @@
       return {
         numberOfTeams: 2,
         numberOfPlayers: 2,
-        currentStep: 1
+        currentStep: 1,
+        playerNames: [],
       }
     },
     methods: {
       nextScreen() {
         this.currentStep++
       },
-      updateNumber(type, plusOrMinus) {
-        if (type === 'teams' && plusOrMinus === '+') {
-          this.numberOfTeams++
+      updateNumber(action) {
+        const arrowKey = {
+          'teamsUp': 'this.numberOfTeams++',
+          'teamsDown': 'this.numberOfTeams--',
+          'playersUp': 'this.numberOfPlayers++',
+          'playersDown': 'this.numberOfPlayers--',
         }
-        if (type === 'teams' && plusOrMinus === '-') {
-          this.maintainTwoOrMore() && this.numberOfTeams--
-        }
-        if (type === 'players' && plusOrMinus === '+') {
-          this.numberOfPlayers++
-        }
-        if (type === 'players' && plusOrMinus === '-') {
-          this.maintainTwoOrMore() && this.numberOfPlayers--
-        }
+        eval(arrowKey[action])
       },
-      maintainTwoOrMore() {
-        if (this.numberOfTeams !== 2 || this.numberOfPlayers !== 2) {
-          return true;
-        } else {
-          return false;
+      updatePlayerNames() {
+        for (let i = 2; i < this.numberOfPlayers; i++) {
+          this.playerNames.push('_')
         }
+      }
+    },
+    watch: {
+      numberOfTeams() {
+        if (this.numberOfTeams < 2) {this.numberOfTeams = 2}
+      },
+      numberOfPlayers() {
+        if (this.numberOfPlayers < 2) {this.numberOfPlayers = 2}
       }
     }
   }

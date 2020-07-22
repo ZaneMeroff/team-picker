@@ -4,7 +4,7 @@
       <h1>Random Team Generator</h1>
       <div v-if='currentStep === 1'>
         <NumSelector label='teams' :number='numberOfTeams' :updateNumber='updateNumber'/>
-        <NumSelector label='players' :number='numberOfPlayers' :updateNumber='updateNumber'/>
+        <NumSelector label='players' :number='playerNames.length' :updateNumber='updateNumber'/>
         <button class='next-button' @click='nextScreen'>next</button>
       </div>
       <div>
@@ -26,9 +26,8 @@
     data() {
       return {
         numberOfTeams: 2,
-        numberOfPlayers: 2,
-        currentStep: 1,
-        playerNames: [],
+        playerNames: ['',''],
+        currentStep: 1
       }
     },
     methods: {
@@ -43,10 +42,13 @@
           'playersDown': 'this.numberOfPlayers--',
         }
         eval(arrowKey[action])
+        this.updatePlayers(action)
       },
-      updatePlayerNames() {
-        for (let i = 2; i < this.numberOfPlayers; i++) {
-          this.playerNames.push('_')
+      updatePlayers(action) {
+        if (action === 'playersUp') {
+          this.playerNames.push('')
+        } else {
+          this.playerNames.pop()
         }
       }
     },
@@ -54,8 +56,8 @@
       numberOfTeams() {
         if (this.numberOfTeams < 2) {this.numberOfTeams = 2}
       },
-      numberOfPlayers() {
-        if (this.numberOfPlayers < 2) {this.numberOfPlayers = 2}
+      playerNames() {
+        if (this.playerNames.length < 2) {this.playerNames.push('')}
       }
     }
   }

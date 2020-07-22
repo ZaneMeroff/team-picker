@@ -3,7 +3,7 @@
 }
 
 .picker-num-btn-container {
-  border: 2px solid red;
+  border: 2px solid #000;
   height: 100px;
   width: 150px;
   display: flex;
@@ -30,7 +30,9 @@
 .increment-button {
   height: 50%;
   border-radius: 0px;
-  border: 1px solid #000;
+  border: 0px;
+  border-left: 2px solid #000;
+  font-size: 200%;
 }
 
 .increment-button:hover {

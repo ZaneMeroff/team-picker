@@ -1,13 +1,13 @@
 <template>
   <section class='picker-outer-container'>
-    <p>{{ label }}</p>
+    <p>number of {{ label }}:</p>
     <div class='picker-num-btn-container'>
       <div class='number-display-container'>
         <p class='number-display'>{{ number }}</p>
       </div>
       <div class='plus-minus-button-container'>
-        <button class='increment-button' @click="updateNumber('+')">+</button>
-        <button class='increment-button' @click="updateNumber('-')">-</button>
+        <button class='increment-button' @click="updateNumber(buttonTypeUp)">⬆</button>
+        <button class='increment-button' @click="updateNumber(buttonTypeDown)">⬇</button>
       </div>
     </div>
   </section>
@@ -17,26 +17,17 @@
   export default {
     name: 'NumSelector',
     props: {
-      label: String
+      label: String,
+      number: Number,
+      updateNumber: Function
     },
     data() {
       return {
-        number: 2
+        buttonTypeUp: this.label + 'Up',
+        buttonTypeDown: this.label + 'Down'
       }
     },
-    methods: {
-      updateNumber(plusOrMinus) {
-        if (plusOrMinus === '+') {
-          this.number++
-        } else {
-          if (this.number === 2) {
-            return;
-          } else {
-            this.number--
-          }
-        }
-      }
-    }
+    methods: {}
   }
 </script>
 

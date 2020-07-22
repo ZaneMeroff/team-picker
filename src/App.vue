@@ -5,14 +5,14 @@
       <div v-if='currentStep === 1'>
         <NumSelector label='teams' :number='numberOfTeams' :updateNumber='updateNumber'/>
         <NumSelector label='players' :number='playerNames.length' :updateNumber='updateNumber'/>
-        <button class='next-button' @click='nextScreen'>next</button>
       </div>
       <div v-if='currentStep === 2'>
-        <button>back</button>
+        <button class='back-button' @click="nextScreen('back')">back</button>
         <div v-for='(player, index) in playerNames' :key='index' >
           <PlayerNameInputScreen />
         </div>
       </div>
+      <button class='next-button' @click="nextScreen('next')">next</button>
     </div>
   </div>
 </template>
@@ -34,23 +34,25 @@
       }
     },
     methods: {
-      nextScreen() {
-        this.currentStep++
+      nextScreen(nextOrBack) {
+        if (nextOrBack === 'next') {
+          this.currentStep++
+        } else if (nextOrBack === 'back') {
+          this.currentStep--
+        }
       },
       updateNumber(action) {
-        const arrowKey = {
+        const teamKey = {
           'teamsUp': 'this.numberOfTeams++',
-          'teamsDown': 'this.numberOfTeams--',
-          'playersUp': 'this.numberOfPlayers++',
-          'playersDown': 'this.numberOfPlayers--',
+          'teamsDown': 'this.numberOfTeams--'
         }
-        eval(arrowKey[action])
+        eval(teamKey[action])
         this.updatePlayers(action)
       },
       updatePlayers(action) {
         if (action === 'playersUp') {
           this.playerNames.push('')
-        } else {
+        } else if (action === 'playersDown') {
           this.playerNames.pop()
         }
       }
@@ -93,5 +95,11 @@
     }
     .next-button:hover {
       cursor: pointer;
+    }
+    .back-button {
+      height: 30px;
+      width: 50px;
+      margin-left: -100px;
+      margin-top: 10px;
     }
 </style>

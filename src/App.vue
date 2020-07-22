@@ -15,6 +15,10 @@
         </div>
       </div>
 
+      <div v-if='currentStep === 3'>
+        <TeamDisplay />
+      </div>
+
       <button class='next-button' @click="nextScreen('next')">next</button>
     </div>
   </div>
@@ -23,17 +27,19 @@
 <script>
   import NumSelector from './components/NumSelector/NumSelector.vue';
   import PlayerNameInput from './components/PlayerNameInput/PlayerNameInput.vue';
+  import TeamDisplay from './components/TeamDisplay/TeamDisplay.vue';
   export default {
     name: 'App',
     components: {
       NumSelector,
-      PlayerNameInput
+      PlayerNameInput,
+      TeamDisplay
     },
     data() {
       return {
         numberOfTeams: 2,
         playerNames: ['',''],
-        currentStep: 1
+        currentStep: 3
       }
     },
     methods: {

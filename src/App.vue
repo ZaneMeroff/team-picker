@@ -15,76 +15,76 @@
 </template>
 
 <script>
-import NumSelector from './components/NumSelector/NumSelector.vue';
-import PlayerNameInputScreen from './components/PlayerNameInputScreen/PlayerNameInputScreen.vue';
-export default {
-  name: 'App',
-  components: {
-    NumSelector,
-    PlayerNameInputScreen
-  },
-  data() {
-    return {
-      numberOfTeams: 2,
-      numberOfPlayers: 2,
-      currentStep: 1
-    }
-  },
-  methods: {
-    nextScreen() {
-      this.currentStep++
+  import NumSelector from './components/NumSelector/NumSelector.vue';
+  import PlayerNameInputScreen from './components/PlayerNameInputScreen/PlayerNameInputScreen.vue';
+  export default {
+    name: 'App',
+    components: {
+      NumSelector,
+      PlayerNameInputScreen
     },
-    updateNumber(type, plusOrMinus) {
-      if (type === 'teams' && plusOrMinus === '+') {
-        this.numberOfTeams++
-      }
-      if (type === 'teams' && plusOrMinus === '-') {
-        this.maintainTwoOrMore() && this.numberOfTeams--
-      }
-      if (type === 'players' && plusOrMinus === '+') {
-        this.numberOfPlayers++
-      }
-      if (type === 'players' && plusOrMinus === '-') {
-        this.maintainTwoOrMore() && this.numberOfPlayers--
+    data() {
+      return {
+        numberOfTeams: 2,
+        numberOfPlayers: 2,
+        currentStep: 1
       }
     },
-    maintainTwoOrMore() {
-      if (this.numberOfTeams !== 2 || this.numberOfPlayers !== 2) {
-        return true;
-      } else {
-        return false;
+    methods: {
+      nextScreen() {
+        this.currentStep++
+      },
+      updateNumber(type, plusOrMinus) {
+        if (type === 'teams' && plusOrMinus === '+') {
+          this.numberOfTeams++
+        }
+        if (type === 'teams' && plusOrMinus === '-') {
+          this.maintainTwoOrMore() && this.numberOfTeams--
+        }
+        if (type === 'players' && plusOrMinus === '+') {
+          this.numberOfPlayers++
+        }
+        if (type === 'players' && plusOrMinus === '-') {
+          this.maintainTwoOrMore() && this.numberOfPlayers--
+        }
+      },
+      maintainTwoOrMore() {
+        if (this.numberOfTeams !== 2 || this.numberOfPlayers !== 2) {
+          return true;
+        } else {
+          return false;
+        }
       }
     }
   }
-}
-</script>
+  </script>
 
-<style>
-  * {
-    margin: 0px;
-    padding: 0px;
-  }
-  #main-outer-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
-  }
-  .main-container {
-    height: 500px;
-    width: 500px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 2px solid #000;
-  }
-  .next-button {
-    height: 50px;
-    width: 80px;
-    margin: 20px;
-  }
-  .next-button:hover {
-    cursor: pointer;
-  }
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+    #main-outer-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      width: 100vw;
+    }
+    .main-container {
+      height: 500px;
+      width: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 2px solid #000;
+    }
+    .next-button {
+      height: 50px;
+      width: 80px;
+      margin: 20px;
+    }
+    .next-button:hover {
+      cursor: pointer;
+    }
 </style>

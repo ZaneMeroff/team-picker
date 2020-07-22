@@ -1,9 +1,9 @@
 <template>
-    <input
-      placeholder='player name...'
-      class='player-name-input'
-      v-model='name'
-      @change="updateNames(name, id)"/>
+  <input
+    placeholder='player name...'
+    class='player-name-input'
+    v-model='name'
+    @change="updateNames(name, id)"/>
 </template>
 
 <script>

@@ -2,16 +2,19 @@
   <div id='main-outer-container'>
     <div class='main-container'>
       <h1>Random Team Generator</h1>
+
       <div v-if='currentStep === 1'>
         <NumSelector label='teams' :number='numberOfTeams' :updateNumber='updateNumber'/>
         <NumSelector label='players' :number='playerNames.length' :updateNumber='updateNumber'/>
       </div>
+
       <div v-if='currentStep === 2'>
         <button class='back-button' @click="nextScreen('back')">back</button>
         <div v-for='(player, index) in playerNames' :key='index' >
-          <PlayerNameInput />
+          <PlayerNameInput :id='index' :updateNames='updateNames'/>
         </div>
       </div>
+
       <button class='next-button' @click="nextScreen('next')">next</button>
     </div>
   </div>
@@ -55,6 +58,9 @@
         } else if (action === 'playersDown') {
           this.playerNames.pop()
         }
+      },
+      updateNames(name, index) {
+        this.playerNames[index] = name;
       }
     },
     watch: {

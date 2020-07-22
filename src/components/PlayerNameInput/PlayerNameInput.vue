@@ -1,16 +1,21 @@
 <template>
-  <!-- <section class='player-name-input-outer-container'> -->
-    <input placeholder='player name...' class='player-name-input'/>
-  <!-- </section> -->
+    <input
+      placeholder='player name...'
+      class='player-name-input'
+      v-model='name'
+      @change="updateNames(name, id)"/>
 </template>
 
 <script>
   export default {
     name: 'PlayerNameInput',
-    props: {},
+    props: {
+      updateNames: Function,
+      id: Number
+    },
     data() {
       return {
-        // code
+        name
       }
     },
     methods: {}

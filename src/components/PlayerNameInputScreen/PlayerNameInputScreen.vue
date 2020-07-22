@@ -1,7 +1,7 @@
 <template>
-  <section class='player-name-input-outer-container'>
-    <input placeholder='player 1 name' class='player-name-input'/>
-  </section>
+  <!-- <section class='player-name-input-outer-container'> -->
+    <input placeholder='player name...' class='player-name-input'/>
+  <!-- </section> -->
 </template>
 
 <script>

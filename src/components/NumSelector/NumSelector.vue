@@ -6,8 +6,8 @@
         <p class='number-display'>{{ number }}</p>
       </div>
       <div class='plus-minus-button-container'>
-        <button class='increment-button' @click="updateNumber(label, '+')">⬆</button>
-        <button class='increment-button' @click="updateNumber(label, '-')">⬇</button>
+        <button class='increment-button' @click="updateNumber(buttonTypeUp)">⬆</button>
+        <button class='increment-button' @click="updateNumber(buttonTypeDown)">⬇</button>
       </div>
     </div>
   </section>
@@ -23,7 +23,8 @@
     },
     data() {
       return {
-        // pickerType: this.label
+        buttonTypeUp: this.label + 'Up',
+        buttonTypeDown: this.label + 'Down'
       }
     },
     methods: {}

@@ -6,8 +6,8 @@
         <p class='number-display'>{{ number }}</p>
       </div>
       <div class='plus-minus-button-container'>
-        <button class='increment-button' @click="updateNumber(buttonTypeUp)">⬆</button>
-        <button class='increment-button' @click="updateNumber(buttonTypeDown)">⬇</button>
+        <button class='increment-button-up' @click="updateNumber(buttonTypeUp)">⬆</button>
+        <button class='increment-button-down' @click="updateNumber(buttonTypeDown)">⬇</button>
       </div>
     </div>
   </section>

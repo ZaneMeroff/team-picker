@@ -1,5 +1,13 @@
 <template>
-  <h1>team dispaly</h1>
+  <div class='team-display-outer-container'>
+    <p>team 1</p>
+    <p>players:</p>
+    <ul>
+      <li>Bob</li>
+      <li>Sue</li>
+      <li>Joe</li>
+    </ul>
+  </div>
 </template>
 
 <script>

@@ -2,5 +2,20 @@
   height: auto;
   width: 200px;
   padding: 20px;
-  border: 2px solid black;
+  background-color: #62af82;
+  margin: 10px;
+  border-radius: 10px;
+}
+
+.team-text {
+  font-size: 120%;
+}
+
+.team-card-display-container {
+  height: 500px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
 }

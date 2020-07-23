@@ -1,0 +1,59 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  color: #FFF;
+  font-family: 'Play', sans-serif;
+}
+
+.app-title {
+  font-size: 200%;
+  margin-top: 20px;
+}
+
+.main-outer-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #1e1e2e;
+}
+
+.main-container {
+  height: 100vh;
+  width: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #034843;
+}
+
+.view-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-button-container {
+  height: 50px;
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0px;
+}
+
+.next-button,
+.back-button {
+  height: 50px;
+  width: 50px;
+  border-radius: 8px;
+  font-size: 150%;
+  background-color: #3e7cee;
+  border: 2px solid #FFF;
+  color: #FFF;
+}
+
+.next-button:hover,
+.back-button:hover {
+  cursor: pointer;
+}

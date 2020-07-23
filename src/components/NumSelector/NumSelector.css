@@ -1,11 +1,12 @@
 .picker-outer-container {
-  margin: 10px;
+  margin: 20px;
 }
 
 .picker-num-btn-container {
-  border: 2px solid #000;
-  height: 100px;
+  border: 2px solid #62af82;
+  height: 150px;
   width: 150px;
+  border-radius: 10px;
   display: flex;
 }
 
@@ -24,18 +25,27 @@
 }
 
 .number-display {
-  font-size: 300%;
+  font-size: 350%;
 }
 
-.increment-button {
-  height: 50%;
-  border-radius: 0px;
+.increment-button-up,
+.increment-button-down {
+  height: 90px;
   border: 0px;
-  border-left: 2px solid #000;
   font-size: 200%;
+  background-color: #62af82;
 }
 
-.increment-button:hover {
+.increment-button-up {
+  border-top-right-radius: 8px;
+}
+
+.increment-button-down {
+  border-bottom-right-radius: 8px;
+}
+
+.increment-button-up:hover,
+.increment-button-down:hover {
   cursor: pointer;
-  background-color: yellow;
+  background-color: #3e7cee;
 }

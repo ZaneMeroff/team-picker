@@ -1,27 +1,35 @@
 <template>
-  <div id='main-outer-container'>
+  <div class='main-outer-container'>
     <div class='main-container'>
-      <h1>Random Team Generator</h1>
+      <h1 class='app-title'>Team Generator</h1>
 
-      <div v-if='currentStep === 1'>
+      <div v-if='currentStep === 1' class='view-container'>
+        <div class='nav-button-container'>
+          <div></div>
+          <button class='next-button' @click="nextScreen('next')">→</button>
+        </div>
         <NumSelector label='teams' :number='numberOfTeams' :updateNumber='updateNumber'/>
         <NumSelector label='players' :number='playerNames.length' :updateNumber='updateNumber'/>
-        <button class='next-button' @click="nextScreen('next')">next</button>
       </div>
 
-      <div v-if='currentStep === 2'>
-        <button class='back-button' @click="nextScreen('back')">back</button>
+      <div v-if='currentStep === 2' class='view-container'>
+        <div class='nav-button-container'>
+          <button class='back-button' @click="nextScreen('back')">←</button>
+          <button class='next-button' @click="generateTeams(shuffleNames(playerNames), numberOfTeams)">→</button>
+        </div>
         <div v-for='(player, index) in playerNames' :key='index' >
           <PlayerNameInput :id='index' :updateNames='updateNames'/>
         </div>
-        <button class='next-button' @click="generateTeams(shuffleNames(playerNames), numberOfTeams)">GO!</button>
       </div>
 
-      <div v-if='currentStep === 3'>
+      <div v-if='currentStep === 3' class='view-container'>
+        <div class='nav-button-container'>
+          <button class='back-button' @click="nextScreen('back')">←</button>
+          <div></div>
+        </div>
         <div v-for='(team, index) in teamObjects' :key='index'>
           <TeamDisplay :id='index' :playerNames='team.names' />
         </div>
-        <button class='next-button' @click="nextScreen('back')">back</button>
       </div>
 
     </div>
@@ -124,38 +132,6 @@
   }
   </script>
 
-  <style>
-    * {
-      margin: 0px;
-      padding: 0px;
-    }
-    #main-outer-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      width: 100vw;
-    }
-    .main-container {
-      height: 500px;
-      width: 500px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border: 2px solid #000;
-    }
-    .next-button {
-      height: 50px;
-      width: 80px;
-      margin: 20px;
-    }
-    .next-button:hover {
-      cursor: pointer;
-    }
-    .back-button {
-      height: 30px;
-      width: 50px;
-      margin-left: -100px;
-      margin-top: 10px;
-    }
+<style>
+  @import './App.css';
 </style>

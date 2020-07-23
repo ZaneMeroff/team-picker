@@ -6,6 +6,7 @@
       <div v-if='currentStep === 1'>
         <NumSelector label='teams' :number='numberOfTeams' :updateNumber='updateNumber'/>
         <NumSelector label='players' :number='playerNames.length' :updateNumber='updateNumber'/>
+        <button class='next-button' @click="nextScreen('next')">next</button>
       </div>
 
       <div v-if='currentStep === 2'>
@@ -13,9 +14,16 @@
         <div v-for='(player, index) in playerNames' :key='index' >
           <PlayerNameInput :id='index' :updateNames='updateNames'/>
         </div>
+        <button class='next-button' @click="generateTeams(shuffleNames(playerNames), numberOfTeams)">GO!</button>
       </div>
 
-      <button class='next-button' @click="nextScreen('next')">next</button>
+      <div v-if='currentStep === 3'>
+        <div v-for='(team, index) in teamObjects' :key='index'>
+          <TeamDisplay :id='index' :playerNames='team.names' />
+        </div>
+        <button class='next-button' @click="nextScreen('back')">back</button>
+      </div>
+
     </div>
   </div>
 </template>
@@ -23,20 +31,62 @@
 <script>
   import NumSelector from './components/NumSelector/NumSelector.vue';
   import PlayerNameInput from './components/PlayerNameInput/PlayerNameInput.vue';
+  import TeamDisplay from './components/TeamDisplay/TeamDisplay.vue';
   export default {
     name: 'App',
     components: {
       NumSelector,
-      PlayerNameInput
+      PlayerNameInput,
+      TeamDisplay
     },
     data() {
       return {
         numberOfTeams: 2,
         playerNames: ['',''],
+        teamObjects: [],
         currentStep: 1
       }
     },
     methods: {
+      generateTeams(names, numOfTeams) {
+        let numPerTeam = Math.floor(names.length / numOfTeams);
+        let teamObjArray = [];
+        for (let i = 1; i <= numOfTeams; i++) {
+          let teamObj = { teamID: i, names: [] }
+          teamObjArray.push(teamObj)
+        }
+        teamObjArray.forEach(team => {
+          names.forEach(() => {
+            if (team.names.length < numPerTeam) {
+              let targetName = names.pop()
+              team.names.push(targetName)
+            }
+          })
+        })
+        if (names.length) {
+          let sortedTeams = teamObjArray.sort((a,b) => a.names.length - b.names.length)
+          names.forEach(() => {
+            sortedTeams.forEach(openSpot => {
+              if (names.length) {
+                let targetExtra = names.pop()
+                openSpot.names.push(targetExtra)
+              }
+            })
+          })
+        }
+        this.nextScreen('next');
+        this.teamObjects = teamObjArray;
+      },
+      shuffleNames(a) {
+        let j, x, i;
+        for (i = a.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            x = a[i];
+            a[i] = a[j];
+            a[j] = x;
+        }
+        return a;
+      },
       nextScreen(nextOrBack) {
         if (nextOrBack === 'next') {
           this.currentStep++

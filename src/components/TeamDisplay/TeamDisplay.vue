@@ -1,11 +1,9 @@
 <template>
   <div class='team-display-outer-container'>
-    <p>team 1</p>
+    <p>team {{ id + 1 }}</p>
     <p>players:</p>
-    <ul>
-      <li>Bob</li>
-      <li>Sue</li>
-      <li>Joe</li>
+    <ul v-for="name in playerNames" :key='name'>
+      <li>{{ name }}</li>
     </ul>
   </div>
 </template>
@@ -13,7 +11,10 @@
 <script>
   export default {
     name: 'TeamDisplay',
-    props: {},
+    props: {
+      id: Number,
+      playerNames: Array
+    },
     data() {
       return {
         // code

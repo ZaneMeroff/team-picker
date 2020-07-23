@@ -17,8 +17,12 @@
           <button class='back-button' @click="nextScreen('back')">←</button>
           <button class='next-button' @click="generateTeams(shuffleNames(playerNames), numberOfTeams)">→</button>
         </div>
-        <div v-for='(player, index) in playerNames' :key='index' >
-          <PlayerNameInput :id='index' :updateNames='updateNames'/>
+        <div class='player-name-inputs-container'>
+          <PlayerNameInput
+            v-for='(player, index) in playerNames'
+            :key='index'
+            :id='index'
+            :updateNames='updateNames'/>
         </div>
       </div>
 
@@ -27,8 +31,12 @@
           <button class='back-button' @click="nextScreen('back')">←</button>
           <div></div>
         </div>
-        <div v-for='(team, index) in teamObjects' :key='index'>
-          <TeamDisplay :id='index' :playerNames='team.names' />
+        <div class='team-card-display-container'>
+          <TeamDisplay
+            v-for='(team, index) in teamObjects'
+            :key='index + Math.random()'
+            :id='index'
+            :playerNames='team.names' />
         </div>
       </div>
 

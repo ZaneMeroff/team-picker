@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NumSelector.vue component renders and matches snapshot 1`] = `
+exports[`NumSelector.vue component render matches snapshot 1`] = `
 <section class="picker-outer-container">
-  <p>number of :</p>
+  <p>number of teams:</p>
   <div class="picker-num-btn-container">
     <div class="number-display-container">
-      <p class="number-display"></p>
+      <p class="number-display">2</p>
     </div>
     <div class="plus-minus-button-container"><button class="increment-button-up">⬆</button> <button class="increment-button-down">⬇</button></div>
   </div>

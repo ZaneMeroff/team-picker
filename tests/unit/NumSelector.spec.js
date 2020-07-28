@@ -20,9 +20,9 @@ describe('NumSelector.vue', () => {
   })
 
   it('component has correct props', () => {
-    expect(wrapper.props().label).toBe('teams')
-    expect(wrapper.props().number).toBe(2)
-    expect(typeof wrapper.props().updateNumber).toBe('function')
+    expect(wrapper.props().label).toEqual('teams')
+    expect(wrapper.props().number).toEqual(2)
+    expect(typeof wrapper.props().updateNumber).toEqual('function')
   })
 
   it('component has correct default data values', () => {

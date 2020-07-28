@@ -6,7 +6,8 @@
       <div v-if='currentStep === 1' class='view-container'>
         <div class='nav-button-container'>
           <div></div>
-          <button class='next-button' @click="nextScreen('next')">→</button>
+          <button class='arrow-button' @click="validatePlayersExceedTeams">→</button>
+          <p v-if='playerCountErrorMessage' class='error-message'>*player count must exceed teams</p>
         </div>
         <NumSelector label='teams' :number='numberOfTeams' :updateNumber='updateNumber'/>
         <NumSelector label='players' :number='playerNames.length' :updateNumber='updateNumber'/>
@@ -14,8 +15,9 @@
 
       <div v-if='currentStep === 2' class='view-container'>
         <div class='nav-button-container'>
-          <button class='back-button' @click="nextScreen('back')">←</button>
-          <button class='next-button' @click="generateTeams(shuffleNames(playerNames), numberOfTeams)">→</button>
+          <button class='arrow-button' @click="nextScreen('back')">←</button>
+          <button class='arrow-button' @click="validatePlayerNameInputs">→</button>
+          <p v-if='nameInputsErrorMessage' class='error-message'>*each player must have a name</p>
         </div>
         <div class='player-name-inputs-container'>
           <PlayerNameInput
@@ -28,8 +30,8 @@
 
       <div v-if='currentStep === 3' class='view-container'>
         <div class='nav-button-container'>
-          <button class='back-button' @click="nextScreen('back')">←</button>
-          <div></div>
+          <button class='arrow-button' @click="nextScreen('back')">←</button>
+          <button class='arrow-button' @click="generateTeams(shuffleNames(playerNames), numberOfTeams)">🔀</button>
         </div>
         <div class='team-card-display-container'>
           <TeamDisplay
@@ -60,18 +62,34 @@
         numberOfTeams: 2,
         playerNames: ['',''],
         teamObjects: [],
-        currentStep: 1
+        currentStep: 1,
+        playerCountErrorMessage: false,
+        nameInputsErrorMessage: false
       }
     },
     methods: {
-      generateTeams(names, numOfTeams) {
-        let numPerTeam = Math.floor(names.length / numOfTeams);
-        let teamObjArray = [];
+      buildTeamObjects(numOfTeams) {
+        this.teamObjects = [];
         for (let i = 1; i <= numOfTeams; i++) {
           let teamObj = { teamID: i, names: [] }
-          teamObjArray.push(teamObj)
+          this.teamObjects.push(teamObj)
         }
-        teamObjArray.forEach(team => {
+      },
+      distributeOddNumOfPlayers(names) {
+        let sortedTeams = this.teamObjects.sort((a,b) => a.names.length - b.names.length)
+        names.forEach(() => {
+          sortedTeams.forEach(openSpot => {
+            if (names.length) {
+              let targetExtra = names.pop()
+              openSpot.names.push(targetExtra)
+            }
+          })
+        })
+      },
+      generateTeams(names, numOfTeams) {
+        let numPerTeam = Math.floor(names.length / numOfTeams);
+        this.buildTeamObjects(numOfTeams);
+        this.teamObjects.forEach(team => {
           names.forEach(() => {
             if (team.names.length < numPerTeam) {
               let targetName = names.pop()
@@ -79,19 +97,8 @@
             }
           })
         })
-        if (names.length) {
-          let sortedTeams = teamObjArray.sort((a,b) => a.names.length - b.names.length)
-          names.forEach(() => {
-            sortedTeams.forEach(openSpot => {
-              if (names.length) {
-                let targetExtra = names.pop()
-                openSpot.names.push(targetExtra)
-              }
-            })
-          })
-        }
+        {names.length && this.distributeOddNumOfPlayers(names)}
         this.nextScreen('next');
-        this.teamObjects = teamObjArray;
       },
       shuffleNames(a) {
         let j, x, i;
@@ -103,10 +110,31 @@
         }
         return a;
       },
+      validatePlayersExceedTeams() {
+        if (this.numberOfTeams > this.playerNames.length) {
+          this.playerCountErrorMessage = true;
+        } else {
+          this.nextScreen('next');
+          this.playerCountErrorMessage = false;
+        }
+      },
+      validatePlayerNameInputs() {
+        let missingName = false;
+        this.playerNames.find(name => {
+          if (!name) {
+            this.nameInputsErrorMessage = true;
+            missingName = true;
+        }})
+        if (!missingName) {
+          this.generateTeams(this.shuffleNames(this.playerNames), this.numberOfTeams);
+          this.nameInputsErrorMessage = false;
+        }
+      },
       nextScreen(nextOrBack) {
         if (nextOrBack === 'next') {
           this.currentStep++
         } else if (nextOrBack === 'back') {
+          this.nameInputsErrorMessage = false;
           this.currentStep--
         }
       },
@@ -135,6 +163,9 @@
       },
       playerNames() {
         if (this.playerNames.length < 2) {this.playerNames.push('')}
+      },
+      currentStep() {
+        if (this.currentStep > 3) {this.currentStep = 3}
       }
     }
   }

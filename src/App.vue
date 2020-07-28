@@ -98,16 +98,6 @@
         {names.length && this.distributeOddNumOfPlayers(names)}
         this.nextScreen('next');
       },
-      shuffleNames(a) {
-        let j, x, i;
-        for (i = a.length - 1; i > 0; i--) {
-            j = Math.floor(Math.random() * (i + 1));
-            x = a[i];
-            a[i] = a[j];
-            a[j] = x;
-        }
-        return a;
-      },
       validatePlayersExceedTeams() {
         if (this.numberOfTeams > this.playerNames.length) {
           this.playerCountErrorMessage = true;
@@ -153,6 +143,16 @@
       },
       updateNames(name, index) {
         this.playerNames[index] = name;
+      },
+      shuffleNames(a) {
+        let j, x, i;
+        for (i = a.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            x = a[i];
+            a[i] = a[j];
+            a[j] = x;
+        }
+        return a;
       }
     },
     watch: {

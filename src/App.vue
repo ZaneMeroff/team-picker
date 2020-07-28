@@ -69,7 +69,7 @@
     },
     methods: {
       buildTeamObjects(numOfTeams) {
-        this.teamOjjects = [];
+        this.teamObjects = [];
         for (let i = 1; i <= numOfTeams; i++) {
           let teamObj = { teamID: i, names: [] }
           this.teamObjects.push(teamObj)
@@ -97,7 +97,7 @@
             }
           })
         })
-        { names.length && this.distributeOddNumOfPlayers(names) }
+        {names.length && this.distributeOddNumOfPlayers(names)}
         this.nextScreen('next');
       },
       shuffleNames(a) {

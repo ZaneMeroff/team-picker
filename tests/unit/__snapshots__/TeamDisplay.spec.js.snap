@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TeamDisplay.vue component renders and matches snapshot 1`] = `
+<div class="team-display-outer-container">
+  <p class="team-text">team #NaN</p>
+</div>
+`;

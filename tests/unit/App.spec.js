@@ -43,11 +43,36 @@ describe('App.vue', () => {
     expect(wrapper.vm.$data.teamObjects).toEqual(expected)
   })
 
-  it('generateTeams', () => {
+  it('generateTeams correctly distributes players', () => {
     let mockNames = ['Tommy', 'Chuckie', 'Phil', 'Lil']
     let mockNumOfTeams = 2
+    wrapper.vm.nextScreen = jest.fn()
     expect(wrapper.vm.$data.teamObjects.length).toEqual(0)
-    
+    wrapper.vm.generateTeams(mockNames, mockNumOfTeams)
+    expect(wrapper.vm.$data.teamObjects.length).toEqual(2)
+    expect(wrapper.vm.nextScreen).toHaveBeenCalledWith('next')
+  })
+
+  describe('validatePlayersExceedTeams', () => {
+
+    it('if numberOfTeams exceeds number of players, error message is true', () => {
+      let mockPlayerNames = ['Tommy', 'Chuckie']
+      wrapper.vm.$data.numberOfTeams = 3
+      wrapper.vm.$data.playerNames = mockPlayerNames
+      expect(wrapper.vm.playerCountErrorMessage).toEqual(false)
+      wrapper.vm.validatePlayersExceedTeams()
+      expect(wrapper.vm.playerCountErrorMessage).toEqual(true)
+    })
+
+    it('if numberOfTeams does not exceed number of players, error message is false', () => {
+      let mockPlayerNames = ['Tommy', 'Chuckie']
+      wrapper.vm.$data.numberOfTeams = 2
+      wrapper.vm.$data.playerNames = mockPlayerNames
+      expect(wrapper.vm.playerCountErrorMessage).toEqual(false)
+      wrapper.vm.validatePlayersExceedTeams()
+      expect(wrapper.vm.playerCountErrorMessage).toEqual(false)
+    })
+
   })
 
 })

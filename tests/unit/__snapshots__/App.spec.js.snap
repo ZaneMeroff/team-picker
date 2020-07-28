@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App.vue component renders and matches snapshot 1`] = `
+<div class="main-outer-container">
+  <div class="main-container">
+    <h1 class="app-title">Team Generator</h1>
+    <div class="view-container">
+      <div class="nav-button-container">
+        <div></div> <button class="arrow-button">→</button>
+        <!---->
+      </div>
+      <numselector-stub label="teams" number="2" updatenumber="function () { [native code] }"></numselector-stub>
+      <numselector-stub label="players" number="2" updatenumber="function () { [native code] }"></numselector-stub>
+    </div>
+    <!---->
+    <!---->
+  </div>
+</div>
+`;

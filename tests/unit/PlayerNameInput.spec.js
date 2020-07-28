@@ -20,7 +20,7 @@ describe('PlayerNameInput.vue', () => {
 
   it('component has correct props', () => {
     expect(typeof wrapper.props().updateNames).toBe('function')
-    expect(wrapper.props().id).toBe(1)
+    expect(wrapper.props().id).toEqual(1)
   })
 
   it('component has correct default data values', () => {

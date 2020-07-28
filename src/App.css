@@ -14,9 +14,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: auto;
   width: 100vw;
   background-color: #1e1e2e;
+  overflow-y: hidden;
 }
 
 .main-container {
@@ -42,8 +43,7 @@
   margin: 15px 0px;
 }
 
-.next-button,
-.back-button {
+.arrow-button {
   height: 50px;
   width: 50px;
   border-radius: 8px;
@@ -53,7 +53,19 @@
   color: #FFF;
 }
 
-.next-button:hover,
-.back-button:hover {
+.arrow-button:hover {
   cursor: pointer;
+}
+
+.error-message {
+  position: absolute;
+  top: 130px;
+  color: #ffad00;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 1;
 }

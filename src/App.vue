@@ -4,8 +4,7 @@
       <h1 class='app-title'>Team Generator</h1>
 
       <div v-if='currentStep === 1' class='view-container'>
-        <div class='nav-button-container'>
-          <div></div>
+        <div class='nav-button-container'><div></div>
           <button class='arrow-button' @click="validatePlayersExceedTeams">→</button>
           <p v-if='playerCountErrorMessage' class='error-message'>*player count must exceed teams</p>
         </div>
@@ -31,7 +30,6 @@
       <div v-if='currentStep === 3' class='view-container'>
         <div class='nav-button-container'>
           <button class='arrow-button' @click="nextScreen('back')">←</button>
-          <button class='arrow-button' @click="generateTeams(shuffleNames(playerNames), numberOfTeams)">🔀</button>
         </div>
         <div class='team-card-display-container'>
           <TeamDisplay
@@ -163,9 +161,6 @@
       },
       playerNames() {
         if (this.playerNames.length < 2) {this.playerNames.push('')}
-      },
-      currentStep() {
-        if (this.currentStep > 3) {this.currentStep = 3}
       }
     }
   }

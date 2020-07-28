@@ -28,5 +28,26 @@ describe('App.vue', () => {
     expect(wrapper.vm.$data.teamObjects.length).toEqual(2)
   })
 
+  it('distributeOddNumOfPlayers adds additional player appropriately', () => {
+    let mockName = ['Tommy']
+    let mockTeamObjects = [
+      { teamID: 1, names: ['Chuckie', 'Angelica'] },
+      { teamID: 2, names: ['Phil', 'Lil'] }
+    ]
+    let expected = [
+      { teamID: 1, names: ['Chuckie', 'Angelica', 'Tommy'] },
+      { teamID: 2, names: ['Phil', 'Lil'] }
+    ]
+    wrapper.vm.$data.teamObjects = mockTeamObjects
+    wrapper.vm.distributeOddNumOfPlayers(mockName)
+    expect(wrapper.vm.$data.teamObjects).toEqual(expected)
+  })
+
+  it('generateTeams', () => {
+    let mockNames = ['Tommy', 'Chuckie', 'Phil', 'Lil']
+    let mockNumOfTeams = 2
+    expect(wrapper.vm.$data.teamObjects.length).toEqual(0)
+    
+  })
 
 })

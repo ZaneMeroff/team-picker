@@ -127,4 +127,77 @@ describe('App.vue', () => {
 
   })
 
+  describe('updateNumber', () => {
+
+    it('if updateNumber is called with teamsUp, numberOfTeams is incremented by 1', () => {
+      let mockAction = 'teamsUp'
+      wrapper.vm.$data.numberOfTeams = 4
+      expect(wrapper.vm.$data.numberOfTeams).toEqual(4)
+      wrapper.vm.updateNumber(mockAction)
+      expect(wrapper.vm.$data.numberOfTeams).toEqual(5)
+    })
+
+    it('if updateNumber is called with teamsDown, numberOfTeams is decremented by 1', () => {
+      let mockAction = 'teamsDown'
+      wrapper.vm.$data.numberOfTeams = 4
+      expect(wrapper.vm.$data.numberOfTeams).toEqual(4)
+      wrapper.vm.updateNumber(mockAction)
+      expect(wrapper.vm.$data.numberOfTeams).toEqual(3)
+    })
+
+    it('if updateNumber is called with teamsUp, updatePlayers is called with teamsUp', () => {
+      let mockAction = 'teamsUp'
+      let expected = 'teamsUp'
+      wrapper.vm.updatePlayers = jest.fn()
+      wrapper.vm.updateNumber(mockAction)
+      expect(wrapper.vm.updatePlayers).toHaveBeenCalledWith(expected)
+    })
+
+    it('if updateNumber is called with teamsDown, updatePlayers is called with teamsDown', () => {
+      let mockAction = 'teamsDown'
+      let expected = 'teamsDown'
+      wrapper.vm.updatePlayers = jest.fn()
+      wrapper.vm.updateNumber(mockAction)
+      expect(wrapper.vm.updatePlayers).toHaveBeenCalledWith(expected)
+    })
+
+  })
+
+  describe('updatePlayers', () => {
+
+    it('if updatePlayers is called with playersUp, playerNames.length increases by 1', () => {
+      let mockPlayerNames = ['Tommy', 'Chuckie', 'Phil']
+      wrapper.vm.$data.playerNames = mockPlayerNames
+      expect(wrapper.vm.$data.playerNames.length).toEqual(3)
+      wrapper.vm.updatePlayers('playersUp')
+      expect(wrapper.vm.$data.playerNames.length).toEqual(4)
+    })
+
+    it('if updatePlayers is called with playersDown, playerNames.length decreases by 1', () => {
+      let mockPlayerNames = ['Tommy', 'Chuckie', 'Phil']
+      wrapper.vm.$data.playerNames = mockPlayerNames
+      expect(wrapper.vm.$data.playerNames.length).toEqual(3)
+      wrapper.vm.updatePlayers('playersDown')
+      expect(wrapper.vm.$data.playerNames.length).toEqual(2)
+    })
+
+    it('if updatePlayers is called with potato, playerNames.length stays the same', () => {
+      let mockPlayerNames = ['Tommy', 'Chuckie', 'Phil']
+      wrapper.vm.$data.playerNames = mockPlayerNames
+      expect(wrapper.vm.$data.playerNames.length).toEqual(3)
+      wrapper.vm.updatePlayers('potato')
+      expect(wrapper.vm.$data.playerNames.length).toEqual(3)
+    })
+
+  })
+
+  it('updateNames correctly finds and updates a player name based on index', () => {
+    let mockPlayerNames = ['', '', '']
+    let expected = ['Tommy', '', '']
+    wrapper.vm.$data.playerNames = mockPlayerNames
+    expect(wrapper.vm.$data.playerNames).toEqual(mockPlayerNames)
+    wrapper.vm.updateNames('Tommy', 0)
+    expect(wrapper.vm.$data.playerNames).toEqual(expected)
+  })
+
 })

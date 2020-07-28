@@ -75,4 +75,56 @@ describe('App.vue', () => {
 
   })
 
+  describe('validatePlayerNameInputs', () => {
+
+    it('if playerNames contains an empty string, error message is true', () => {
+      let mockPlayerNames = ['Tommy', '', 'Chuckie']
+      wrapper.vm.$data.playerNames = mockPlayerNames
+      expect(wrapper.vm.$data.nameInputsErrorMessage).toEqual(false)
+      wrapper.vm.validatePlayerNameInputs()
+      expect(wrapper.vm.$data.nameInputsErrorMessage).toEqual(true)
+    })
+
+    it('if playerNames does not contain an empty string, error message is false ', () => {
+      let mockPlayerNames = ['Tommy', 'Chuckie', 'Phil']
+      wrapper.vm.$data.playerNames = mockPlayerNames
+      expect(wrapper.vm.$data.nameInputsErrorMessage).toEqual(false)
+      wrapper.vm.validatePlayerNameInputs()
+      expect(wrapper.vm.$data.nameInputsErrorMessage).toEqual(false)
+    })
+
+    it('if playerNames does not contain an empty string, generateTeams is called', () => {
+      let mockPlayerNames = ['Tommy', 'Chuckie', 'Phil']
+      wrapper.vm.generateTeams = jest.fn()
+      wrapper.vm.$data.playerNames = mockPlayerNames
+      wrapper.vm.validatePlayerNameInputs()
+      expect(wrapper.vm.generateTeams).toHaveBeenCalled()
+    })
+
+  })
+
+  describe('nextScreen', () => {
+
+    it('if nextScreen is called with next, currentStep is incremented by 1', () => {
+      expect(wrapper.vm.$data.currentStep).toEqual(1)
+      wrapper.vm.nextScreen('next')
+      expect(wrapper.vm.$data.currentStep).toEqual(2)
+    })
+
+    it('if nextScreen is called with back, error message is false', () => {
+      wrapper.vm.$data.nameInputsErrorMessage = true
+      expect(wrapper.vm.$data.nameInputsErrorMessage).toEqual(true)
+      wrapper.vm.nextScreen('back')
+      expect(wrapper.vm.$data.nameInputsErrorMessage).toEqual(false)
+    })
+
+    it('if nextScreen is called with back, currentStep is decremented by 1', () => {
+      wrapper.vm.$data.currentStep = 2
+      expect(wrapper.vm.$data.currentStep).toEqual(2)
+      wrapper.vm.nextScreen('back')
+      expect(wrapper.vm.$data.currentStep).toEqual(1)
+    })
+
+  })
+
 })

@@ -3,9 +3,24 @@ import TeamDisplay from '../../src/components/TeamDisplay/TeamDisplay.vue'
 
 describe('TeamDisplay.vue', () => {
 
-  it('component renders and matches snapshot', () => {
-    const wrapper = shallowMount(TeamDisplay)
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallowMount(TeamDisplay, {
+      propsData: {
+        id: 1,
+        playerNames: ['','']
+      }
+    })
+  })
+
+  it('component render matches snapshot', () => {
     expect(wrapper).toMatchSnapshot()
+  })
+
+  it('component has correct props', () => {
+    expect(wrapper.props().id).toEqual(1)
+    expect(wrapper.props().playerNames).toEqual(['',''])
   })
 
 })

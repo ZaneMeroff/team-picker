@@ -4,8 +4,7 @@
       <h1 class='app-title'>Team Generator</h1>
 
       <div v-if='currentStep === 1' class='view-container'>
-        <div class='nav-button-container'>
-          <div></div>
+        <div class='nav-button-container'><div></div>
           <button class='arrow-button' @click="validatePlayersExceedTeams">→</button>
           <p v-if='playerCountErrorMessage' class='error-message'>*player count must exceed teams</p>
         </div>
@@ -31,7 +30,6 @@
       <div v-if='currentStep === 3' class='view-container'>
         <div class='nav-button-container'>
           <button class='arrow-button' @click="nextScreen('back')">←</button>
-          <button class='arrow-button' @click="generateTeams(shuffleNames(playerNames), numberOfTeams)">🔀</button>
         </div>
         <div class='team-card-display-container'>
           <TeamDisplay
@@ -100,16 +98,6 @@
         {names.length && this.distributeOddNumOfPlayers(names)}
         this.nextScreen('next');
       },
-      shuffleNames(a) {
-        let j, x, i;
-        for (i = a.length - 1; i > 0; i--) {
-            j = Math.floor(Math.random() * (i + 1));
-            x = a[i];
-            a[i] = a[j];
-            a[j] = x;
-        }
-        return a;
-      },
       validatePlayersExceedTeams() {
         if (this.numberOfTeams > this.playerNames.length) {
           this.playerCountErrorMessage = true;
@@ -155,6 +143,16 @@
       },
       updateNames(name, index) {
         this.playerNames[index] = name;
+      },
+      shuffleNames(a) {
+        let j, x, i;
+        for (i = a.length - 1; i > 0; i--) {
+            j = Math.floor(Math.random() * (i + 1));
+            x = a[i];
+            a[i] = a[j];
+            a[j] = x;
+        }
+        return a;
       }
     },
     watch: {
@@ -163,9 +161,6 @@
       },
       playerNames() {
         if (this.playerNames.length < 2) {this.playerNames.push('')}
-      },
-      currentStep() {
-        if (this.currentStep > 3) {this.currentStep = 3}
       }
     }
   }

@@ -3,9 +3,31 @@ import NumSelector from '../../src/components/NumSelector/NumSelector.vue'
 
 describe('NumSelector.vue', () => {
 
-  it('component renders and matches snapshot', () => {
-    const wrapper = shallowMount(NumSelector)
+  let wrapper;
+
+  beforeEach(() => {
+    wrapper = shallowMount(NumSelector, {
+      propsData: {
+        label: 'teams',
+        number: 2,
+        updateNumber: jest.fn()
+      }
+    })
+  })
+
+  it('component render matches snapshot', () => {
     expect(wrapper).toMatchSnapshot()
+  })
+
+  it('component has correct props', () => {
+    expect(wrapper.props().label).toBe('teams')
+    expect(wrapper.props().number).toBe(2)
+    expect(typeof wrapper.props().updateNumber).toBe('function')
+  })
+
+  it('component has correct default data values', () => {
+    expect(wrapper.vm.$data.buttonTypeUp).toEqual('teamsUp')
+    expect(wrapper.vm.$data.buttonTypeDown).toEqual('teamsDown')
   })
 
 })

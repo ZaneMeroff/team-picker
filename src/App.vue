@@ -6,7 +6,7 @@
       <div v-if='currentStep === 1' class='view-container'>
         <div class='nav-button-container'><div></div>
           <button class='arrow-button' @click="validatePlayersExceedTeams">→</button>
-          <p v-if='playerCountErrorMessage' class='error-message'>*player count must exceed teams</p>
+          <p v-if='playerCountErrorMessage' class='error-message'>*teams can't be greater than players</p>
         </div>
         <NumSelector label='teams' :number='numberOfTeams' :updateNumber='updateNumber'/>
         <NumSelector label='players' :number='playerNames.length' :updateNumber='updateNumber'/>

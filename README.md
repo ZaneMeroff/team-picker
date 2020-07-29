@@ -11,8 +11,7 @@ Welcome to Team Generator, a mobile friendly app created to make assigning rando
 ![screenshots](https://user-images.githubusercontent.com/53405028/88744053-86821300-d103-11ea-98b3-a6d69024be7c.jpg)
 
 #### Jest Testing Suite
-
-The testing suite is currently a work in progress. I have written passing tests that cover happy and sad paths for almost all component methods. Snapshot tests confirming correct renders are included for all four components. There are also tests confirming the default values of all elements in the `data()` object as well as `props`. For future iterations I would like to additionally test all user interactions with the UI and further the test coverage.
+30 unit tests have been written so far, however, the testing suite is still a work in progress. I have written passing tests that cover happy and sad paths for almost all component methods. Snapshot tests confirming correct renders are included for all four components. There are also tests confirming the default values of all elements in the `data()` object as well as `props`. For future iterations I would like to additionally test all user interactions with the UI and further the test coverage.
 
 ```
 COVERAGE    FILE

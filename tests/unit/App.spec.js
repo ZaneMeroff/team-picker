@@ -125,6 +125,13 @@ describe('App.vue', () => {
       expect(wrapper.vm.$data.currentStep).toEqual(1)
     })
 
+    it('if nextScreen is called with potato, currentStep does not change', () => {
+      wrapper.vm.$data.currentStep = 2
+      expect(wrapper.vm.$data.currentStep).toEqual(2)
+      wrapper.vm.nextScreen('potato')
+      expect(wrapper.vm.$data.currentStep).toEqual(2)
+    })
+
   })
 
   describe('updateNumber', () => {

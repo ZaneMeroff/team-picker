@@ -62,6 +62,12 @@
       "json",
       "vue"
     ],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "**/src/components/**"
+    ],
+    "collectCoverage": true,
     "transform": {
       ".*\\.(vue)$": "vue-jest"
     }

@@ -2,7 +2,7 @@
 use this app to generate random teams with ease!
 
 #### Link to Live Site
-http://zanemeroff.github.io/team-picker **this link is still under construction**
+http://zanemeroff.github.io/team-picker
 
 #### Introduction
 Welcome to Team Generator, a mobile friendly app created to make assigning random teams quick and easy! Use it for board game night, volleyball in the park, or virtually any situation where you need to pick teams without human bias. I decided to build this project in order to practice my new skills working with Vue.js and to learn about front end testing in Vue with Jest. While there are still more tests to be written, this project has helped me better understand testing suites within the Vue.js framework.
